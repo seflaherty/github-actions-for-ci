@@ -1,0 +1,15 @@
+name: Team teamwork's approval workflow
+on: pull_request_review
+
+jobs:
+  labelWhenApproved:
+    name: Approved on Pull request review event
+    runs-on: ubuntu-latest
+    steps:
+    - name: Label when approved
+      uses: pullreminders/label-when-approved@master
+      env:
+        APPROVALS: "1"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ADD_LABEL:  Approval count of 1 has been met
+        REMOVE_LABEL: "awaiting%20review"
